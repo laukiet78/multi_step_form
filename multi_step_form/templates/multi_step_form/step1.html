@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+{% block body %}
+<h1>User detail form: Step 1</h1>
+<form method="POST" name="step1_form">
+    {% csrf_token %}
+    <div >
+        <label for="first_name">First Name</label>
+        <input type="text"  name="first_name" {% if form.first_name.value %}value="{{form.first_name.value}}"{% endif %}>
+        {% for error in form.first_name.errors %}
+        <p>{{error}}</p>
+        {% endfor %}
+    </div>
+    <label for="last_name">Last Name</label>
+    <input type="text" name="last_name" {% if form.last_name.value %}value="{{form.last_name.value}}"{% endif %}>
+    {% for error in form.last_name.errors %}
+    <p>{{error}}</p>
+    {% endfor %}
+    
+    <div >
+        <input type="submit" value="Next">
+    </div>
+</form>
+{% endblock body %}

@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %}
+{% block body %}
+<h1>User detail form: Step 2</h1>
+<form method="POST" name="step2_form">
+        {% csrf_token %}
+    <div >
+        <label for="local_address">Local Address</label>
+        <input type="text" name="local_address" {% if form.local_address.value %}value="{{form.local_address.value}}"{% endif %}>
+        {% for error in form.local_address.errors %}
+        <p>{{error}}</p>
+        {% endfor %}
+    </div>
+    <label for="permanent_address">Permanent Address</label>
+    <input type="text" name="permanent_address" {% if form.permanent_address.value %}value="{{form.permanent_address.value}}"{% endif %}>
+    {% for error in form.permanent_address.errors %}
+    <p>{{error}}</p>
+    {% endfor %}
+    
+    <div >
+        <a href="{% url 'multi_step_form:step_1' %}">Back</a>
+        <input type="submit" value="Next">
+    </div>
+</form>
+{% endblock body %}

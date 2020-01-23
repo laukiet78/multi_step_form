@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+{% block body %}
+<h1>User detail form: Step 3</h1>
+<form method="POST" name="step3_form" enctype="multipart/form-data">
+        {% csrf_token %}
+    {% if user_images %}
+    <div>
+        <h2>Last uploaded images</h2>
+        {% for user_image in user_images %}
+        <img src="{{user_image.image.url}}" alt="User Image">
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div>
+        <label for="images">User Images</label>
+        <input type="file" name="images" multiple>
+        {% for error in form.images.errors %}
+        <p>{{error}}</p>
+        {% endfor %}
+    </div>
+    
+    <div >
+        <a href="{% url 'multi_step_form:step_2' %}">Back</a>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+{% endblock body %}

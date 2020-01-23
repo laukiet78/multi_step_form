@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+{% block body %}
+<h1>User detail PDF</h1>
+<div >
+    <p>First Name: {{first_name}}</p>
+    <p>Last Name: {{last_name}}</p>
+    <p>Local Address: {{local_address}}</p>
+    <p>Permanent Address: {{permanent_address}}</p>
+</div>
+<h2> User uploaded Images </h2>
+{% for user_image in  user_images %}
+<img src="{{user_image.image.url}}" alt="User Image">
+{% endfor %}
+{% endblock body %}
